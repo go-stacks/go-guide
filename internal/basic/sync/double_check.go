@@ -7,8 +7,7 @@ type SafeMap[K comparable, V any] struct {
 	mutex sync.RWMutex
 }
 
-func (s *SafeMap[K, V]) LoadOrStore(key K,
-	newVale V) (val V, loaded bool) {
+func (s *SafeMap[K, V]) LoadOrStore(key K, newVale V) (val V, loaded bool) {
 	s.mutex.RLock()
 	val, ok := s.m[key]
 	s.mutex.RUnlock()
